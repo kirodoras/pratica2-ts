@@ -13,3 +13,22 @@ export async function createQuestion(askedBy: string, question: string) {
 export async function get() {
   return await prisma.questions.findMany({});
 }
+
+export async function getById(id: number) {
+  return await prisma.questions.findUnique({
+    where: {
+      id,
+    },
+    select: {
+      id: true,
+      askedBy: true,
+      question: true,
+      Answers: {
+        select: {
+          answeredBy: true,
+			    answer: true
+        },
+      }
+    }
+  });
+}

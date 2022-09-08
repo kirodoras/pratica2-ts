@@ -27,4 +27,7 @@ export async function get(req: Request, res: Response) {
 
 export async function getById(req: Request, res: Response) {
   // TODO
+  const { id } = req.params;
+  const question = await questionService.getById(+id);
+  res.status(200).send({ question });
 }
