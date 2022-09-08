@@ -9,3 +9,7 @@ export async function createQuestion(askedBy: string, question: string) {
     },
   });
 }
+
+export async function get() {
+  return await prisma.questions.findMany({});
+}
